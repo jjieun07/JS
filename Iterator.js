@@ -18,7 +18,7 @@ log.add('spotted whale')
 log.add('spotted another vessel')
 
 for (let entry of log) {
-  console.log(entry);
+  // console.log(entry);
 }
 
 // 직접 Iterator 만들기
@@ -51,5 +51,27 @@ log1.add('spotted whale')
 log1.add('spotted another vessel')
 
 for (let entry of log) {
-  console.log(entry);
+  // console.log(entry);
+}
+
+// 피보나치
+class Fibo {
+  [Symbol.iterator]() {
+    let a = 0, b = 1
+    return {
+      next() {
+        let rval = { value: b, done: false }
+        b += a
+        a = rval.value
+        return rval
+      }
+    }
+  }
+}
+
+const fibo = new Fibo()
+let i = 0;
+for (let n of fibo) {
+  console.log(n);
+  if (++i > 9) break
 }
